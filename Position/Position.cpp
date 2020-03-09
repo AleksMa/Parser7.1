@@ -3,6 +3,11 @@
 
 
 
+Position::Position(string source): source(source) {
+    index = 0;
+    pos = line = 1;
+}
+
 Position &Position::operator++() {
     if (index < source.size()) {
         if(is_newline()) {
@@ -10,6 +15,8 @@ Position &Position::operator++() {
                 index++;
             line++;
             pos = 1;
+        } else {
+            pos++;
         }
         index++;
     }
@@ -18,7 +25,7 @@ Position &Position::operator++() {
 
 Position Position::operator++(int) {
     Position ret(*this);
-    (*this)++;
+    ++(*this);
     return ret;
 }
 
@@ -30,13 +37,8 @@ string Position::to_str() {
     return "(" + to_string(line) + ", " + to_string(pos) + ")";
 }
 
-Position::Position(string source): source(source) {
-    index = 0;
-    pos = line = 1;
-}
-
 bool Position::is_whitespace() {
-    return index < source.size() && cp() == ' ';
+    return index < source.size() && (cp() == ' ' || cp() == '\t');
 }
 
 bool Position::is_letter() {

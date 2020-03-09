@@ -6,29 +6,27 @@
 
 using namespace std;
 
-enum domain {
-    STRING,
+enum domain_tag {
+    IDENT,
     NUMBER,
-    EoF,
-    SERR,
+    DECREMENT,
+    LESS,
+    LESS_EQUAL,
+    END_OF_PROGRAM,
 };
 
 
 class Token {
-private:
-    domain type;
-    string value;
-    Position fragment;
-
 public:
-    string to_str() const;
+    domain_tag tag;
+    Fragment coords;
 
-    Token();
-    Token(domain type, string value,
-          int pos, int col, int row,
-          int new_pos, int new_col, int new_row);
+    virtual string to_str();
 
-    domain get_type();
+protected:
+    Token(domain_tag type, Position start, Position end);
+
+    //domain_tag get_type();
 };
 
 

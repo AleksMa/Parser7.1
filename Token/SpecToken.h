@@ -5,9 +5,13 @@
 #ifndef LEXERLAB3_SPECTOKEN_H
 #define LEXERLAB3_SPECTOKEN_H
 
+#include "Token.h"
 
-class SpecToken {
+class SpecToken: public Token {
+public:
+    string to_str();
 
+    SpecToken(domain_tag tag, Position start, Position end);
 };
 
 

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include "Scanner/Scanner.h"
+#include "Compiler/Compiler.h"
 
 string read_file(const string &path) {
     ifstream source_stream(path);
@@ -20,13 +20,24 @@ int main(int argc, char* argv[]) {
     string input_file = argv[1];
     string source = read_file(input_file);
 
-    Scanner lex(source);
+    Compiler compiler;
 
-    Token t;
-    do {
+    Scanner lex = compiler.get_scanner(source);
+
+    Token *t;
+    while(true) {
         t = lex.next_token();
-        cout << t.to_str() << endl;
-    } while (t.get_type() != EoF && t.get_type() != SERR);
+        cout << t->to_str() << endl;
+        if (t->tag == END_OF_PROGRAM){
+            delete t;
+            break;
+        }
+        delete t;
+    }
+
+    cout << endl << "Messages:" << endl;
+
+    compiler.output_messages();
 
     return 0;
 }

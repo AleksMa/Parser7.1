@@ -6,8 +6,15 @@
 #define LEXERLAB3_NUMERICTOKEN_H
 
 
-class NumericToken {
+#include "Token.h"
 
+class NumericToken: public Token {
+public:
+    long val;
+
+    NumericToken(long num, Position start, Position end);
+
+    string to_str();
 };
 
 

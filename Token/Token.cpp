@@ -7,37 +7,24 @@
 #include <utility>
 
 
-Token::Token() = default;
+//string Token::to_str() const {
+//    string stype = "EOF";
+//    if (tag == STRING)
+//        stype = "STRING";
+//    if (tag == NUMBER)
+//        stype = "NUMBER";
+//    if (tag == SERR)
+//        stype = "syntax error";
+//
+//    string t = stype + " (" + to_string(coords.start.row) + ", " + to_string(coords.start.col) + ")";
+//    if (tag != EoF && tag != SERR)
+//        t += ": " + value;
+//    return t;
+//}
 
-string Token::to_str() const {
-    string stype = "EOF";
-    if (type == STRING)
-        stype = "STRING";
-    if (type == NUMBER)
-        stype = "NUMBER";
-    if (type == SERR)
-        stype = "syntax error";
+Token::Token(domain_tag type, Position start, Position end) :
+        tag(type), coords(start, end) {}
 
-    string t = stype + " (" + to_string(fragment.start.row) + ", " + to_string(fragment.start.col) + ")";
-    if (type != EoF && type != SERR)
-        t += ": " + value;
-    return t;
-}
-
-Token::Token(domain type, string value, int pos, int col, int row, int new_pos, int new_col, int new_row) :
-        type(type), value(value) {
-    fragment.start = {
-            pos,
-            col,
-            row,
-    };
-    fragment.end = {
-            new_pos,
-            new_col,
-            new_row,
-    };
-}
-
-domain Token::get_type() {
-    return type;
+string Token::to_str() {
+    return to_string(tag) + " " + coords.to_str();
 }
