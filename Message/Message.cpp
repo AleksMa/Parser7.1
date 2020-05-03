@@ -1,7 +1,3 @@
-//
-// Created by a.mamaev on 09.03.2020.
-//
-
 #include "Message.h"
 
 Message::Message(bool is_error, string text): is_error(is_error), text(std::move(text)) {}

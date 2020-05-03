@@ -45,6 +45,12 @@ bool Position::is_letter() {
     return index < source.size() && isalpha(cp());
 }
 
+bool Position::is_high_letter() {
+    return is_letter() && cp() >= 'A' && cp() <= 'Z';
+}
+
+
+
 bool Position::is_digit() {
     return index < source.size() && '0' <= cp() && cp() <= '9';
 }
@@ -55,4 +61,8 @@ bool Position::is_newline() {
     if (cp() == '\r' && index + 1 < source.size())
         return source[index] == '\n';
     return cp() == '\n';
+}
+
+int Position::get_index() {
+    return index;
 }

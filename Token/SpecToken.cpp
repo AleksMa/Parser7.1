@@ -1,7 +1,3 @@
-//
-// Created by a.mamaev on 09.03.2020.
-//
-
 #include "SpecToken.h"
 
 SpecToken::SpecToken(domain_tag tag, Position start, Position end): Token(tag, start, end) {}
@@ -9,14 +5,23 @@ SpecToken::SpecToken(domain_tag tag, Position start, Position end): Token(tag, s
 string SpecToken::to_str() {
     string type = "END OF PROGRAM";
     switch(tag) {
-        case DECREMENT:
-            type = "DECREMENT     ";
+        case AXIOM:
+            type = "AXIOM         ";
             break;
-        case LESS:
-            type = "LESS          ";
+        case SEMICOLON:
+            type = "SEMICOLON     ";
             break;
-        case LESS_EQUAL:
-            type = "LESS OR EQUAL ";
+        case OR:
+            type = "OR            ";
+            break;
+        case EPSILON:
+            type = "EPSILON       ";
+            break;
+        case NT_KW:
+            type = "NT_KW         ";
+            break;
+        case T_KW:
+            type = "T_KW          ";
             break;
     }
     return type + " " + coords.to_str();

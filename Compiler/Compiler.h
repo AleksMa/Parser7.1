@@ -1,18 +1,13 @@
-//
-// Created by a.mamaev on 09.03.2020.
-//
+#ifndef LEXERLAB4_COMPILER_H
+#define LEXERLAB4_COMPILER_H
 
-#ifndef LEXERLAB3_COMPILER_H
-#define LEXERLAB3_COMPILER_H
-
+#include "Scanner.h"
 #include <vector>
 #include <map>
 #include "../Token/Token.h"
 #include "../Message/Message.h"
 
 using namespace std;
-
-class Scanner;
 
 class Compiler {
 private:
@@ -33,18 +28,4 @@ public:
     Scanner get_scanner(string program);
 };
 
-
-class Scanner {
-private:
-    string program;
-    Position cur;
-    Compiler *compiler;
-
-    long parse_val();
-
-public:
-    Scanner(string source, Compiler *compiler);
-    Token *next_token();
-};
-
-#endif //LEXERLAB3_COMPILER_H
+#endif //LEXERLAB4_COMPILER_H

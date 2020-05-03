@@ -1,9 +1,5 @@
-//
-// Created by a.mamaev on 09.03.2020.
-//
-
-#ifndef LEXERLAB3_MESSAGE_H
-#define LEXERLAB3_MESSAGE_H
+#ifndef LEXERLAB4_MESSAGE_H
+#define LEXERLAB4_MESSAGE_H
 
 #include <string>
 #include <utility>
@@ -23,4 +19,4 @@ public:
 };
 
 
-#endif //LEXERLAB3_MESSAGE_H
+#endif //LEXERLAB4_MESSAGE_H
